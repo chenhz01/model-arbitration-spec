@@ -2,6 +2,8 @@
 
 A formal, machine-readable spec for arbitrating between multiple LLM answers — majority vote, confidence weighting, or structured disagreement escalation — plus a deterministic referee that replays golden cases against any implementation of the spec. Teams running N models (or N samples of one model) and needing a *defensible, reproducible* tie-break rule should use this; if you just eyeball disagreements in a chat UI, you do not need it. Confidence: [High ≥80%] on the strategy definitions and referee determinism; [Medium] that confidence scores from real models are calibrated enough for weighted voting to beat plain majority. As of 2026-10-11.
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 When three models answer and two disagree, someone (or some ad-hoc script) picks a winner — differently each time. The arbitration rule ends up implicit, unversioned, and untestable: a tie silently resolves by dict ordering, confidences are compared across incompatible scales, and escalations to a stronger model happen only when a developer remembers to add them. What is missing is a small formal contract: what counts as a group, who wins, when to escalate, and a way to verify an implementation actually follows it.
